@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <!-- 条件语句 -->
     <p v-if="showName">{{name}}</p>
     <p>{{foo.abc}}</p>
@@ -14,19 +12,18 @@
         <button @click="addGoods(i)">加入</button>
       </li>
     </ul>
-    <cart :name="name"></cart>
+    <!--  <cart :name="name"></cart> -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import HelloWorld from "./components/HelloWorld.vue";
 import Cart from "./components/Cart.vue";
 
 export default {
   name: "app",
   components: {
-    HelloWorld,
     Cart
   },
   data() {
@@ -49,8 +46,9 @@ export default {
     try {
       let res = await axios.get("/api/goods");
       this.goods = res.data.list;
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
+      throw err;
     }
 
     setTimeout(() => {
