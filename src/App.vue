@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <router-link to="/cart" tag="p" append>Go to Cart</router-link>
+    <router-link to="/hello">Go to Hello</router-link>
+    <router-view></router-view>
     <!-- 条件语句 -->
     <p v-if="showName">{{name}}</p>
     <p>{{foo.abc}}</p>
@@ -12,8 +15,7 @@
         <button @click="addGoods(i)">加入</button>
       </li>
     </ul>
-    <!--  <cart :name="name"></cart> -->
-    <router-view></router-view>
+    <cart :name="name"></cart>
   </div>
 </template>
 
@@ -73,5 +75,12 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.test {
+  color: red;
+}
+.blue {
+  color: blue;
 }
 </style>

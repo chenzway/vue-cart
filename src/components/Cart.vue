@@ -66,6 +66,7 @@ export default {
       deep: true
     }
   },
+  // 对 data 的数据进行额外的加工的时候就要使用到计算属性
   computed: {
     actionCount() {
       return this.cart.filter(v => v.active).length;
@@ -85,6 +86,7 @@ export default {
   },
   created() {
     this.cart = JSON.parse(window.localStorage.getItem('cart')) || [];
+    // 数据交互，派发事件 
     this.$bus.$on("addCart", good => {
       const ret = this.cart.find(v => v.id === good.id);
       if (ret) {

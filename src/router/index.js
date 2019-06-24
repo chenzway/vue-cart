@@ -4,10 +4,16 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   mode: 'hash',
+  linkActiveClass: 'test',
+  linkExactActiveClass: 'blue',
   routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: () => import('@/components/Home')
+    },
     { path: '/cart', name: 'cart', component: () => import('@/components/Cart') },
-    { path: '/hello', name: 'hello', component: () => import('@/components/HelloWorld') },
-    { path: '/', redirect: '/cart' }
+    { path: '/hello', name: 'hello', component: () => import('@/components/HelloWorld') }
   ]
 });
 
