@@ -1,21 +1,21 @@
 <template>
   <div id="app">
-    <router-link to="/cart" tag="p" append>Go to Cart</router-link>
-    <router-link to="/hello">Go to Hello</router-link>
+   <!--  <router-link to="/cart" tag="p" append>Go to Cart</router-link>
+    <router-link to="/hello">Go to Hello</router-link> -->
     <router-view></router-view>
     <!-- 条件语句 -->
-    <p v-if="showName">{{name}}</p>
+<!--     <p v-if="showName">{{name}}</p>
     <p>{{foo.abc}}</p>
     <input type="text" v-model="text">
-    <button @click="addGoods">添加</button>
+    <button @click="addGoods">添加</button> -->
     <!-- 循环语句 -->
-    <ul>
+    <!-- <ul>
       <li v-for="(good, i) in goods" :key="good.text">
         {{good.text}}-￥{{good.price}}
         <button @click="addGoods(i)">加入</button>
       </li>
     </ul>
-    <cart :name="name"></cart>
+    <cart :name="name"></cart> -->
   </div>
 </template>
 

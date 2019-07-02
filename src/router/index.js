@@ -12,6 +12,11 @@ const router = new VueRouter({
       name: 'home',
       component: () => import('@/components/Home')
     },
+    {
+      path: '/form',
+      name: 'form',
+      component: () => import('@/components/form/Index')
+    },
     { path: '/cart', name: 'cart', component: () => import('@/components/Cart') },
     { path: '/hello', name: 'hello', component: () => import('@/components/HelloWorld') }
   ]
