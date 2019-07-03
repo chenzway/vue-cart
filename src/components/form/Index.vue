@@ -1,6 +1,17 @@
 <template>
   <div>
     formItem
+    <p id="myname">
+      myname1
+      <span>span1</span>
+    </p>
+
+    <win>
+      <template slot="head">头部</template>
+      asfds
+      <template slot="foot">foot222</template>
+    </win>
+
     <k-form :model="ruleForm" :rules="rules" ref="loginForm2">
       <k-form-item label="用户名" prop="name">
         <k-input v-model="ruleForm.name"></k-input>
@@ -19,9 +30,11 @@
 import KForm from './Form';
 import KFormItem from './FormItem';
 import KInput from './Input';
+import Win from './Win';
+
 export default {
   name: 'index',
-  components: { KForm, KFormItem, KInput },
+  components: { KForm, KFormItem, KInput, Win },
   data() {
     return {
       ruleForm: {
@@ -52,8 +65,7 @@ export default {
   mounted() {
     console.log(this.$children);
     this.$refs.loginForm2.hello();
-    console.log(this.$child);
-    this.$child.test();
+    console.log(this.$el.querySelector('#myname').textContent);
   }
 };
 </script>

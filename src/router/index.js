@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: 'hash',
+  mode: 'history',
   linkActiveClass: 'test',
   linkExactActiveClass: 'blue',
   routes: [
@@ -20,6 +20,14 @@ const router = new VueRouter({
     { path: '/cart', name: 'cart', component: () => import('@/components/Cart') },
     { path: '/hello', name: 'hello', component: () => import('@/components/HelloWorld') }
   ]
+});
+
+// 全局路由守卫
+router.beforeEach((to, from, next) => {
+  console.log(to), next();
+});
+
+router.afterEach((to, from) => {
 });
 
 export default router;
