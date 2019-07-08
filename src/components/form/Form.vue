@@ -29,6 +29,7 @@ export default {
     // 缓存需要校验的表单项
     this.fields = [];
     this.$on('formItemAdd', item => this.fields.push(item));
+    // 调用父组件中的方法
     this.$parent.say();
   },
   methods: {

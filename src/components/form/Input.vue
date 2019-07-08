@@ -26,7 +26,7 @@ export default {
   methods: {
     inputHandler(e) {
       this.inputValue = e.target.value;
-      // 通知父组件更新 input 的值
+      // 通知父组件更新 input 的值, v-model 就是 @input :value 的语法糖
       this.$emit('input', this.inputValue);
 
       // 通知父组件做校验

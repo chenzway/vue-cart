@@ -52,6 +52,7 @@ export default {
       console.log('I from child');
     },
     submitForm2() {
+      // 调用子组件中的方法
       this.$refs.loginForm2.validate(valid => {
         if (valid) {
           alert('提交登录！');
@@ -64,6 +65,7 @@ export default {
   },
   mounted() {
     console.log(this.$children);
+    // 调用子组件中的方法
     this.$refs.loginForm2.hello();
     console.log(this.$el.querySelector('#myname').textContent);
   }

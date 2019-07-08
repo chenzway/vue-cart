@@ -8,17 +8,17 @@ export default new Vuex.Store({
     count: 0
   },
   mutations: {
-    COUNT(state) {
-      state.count += 1;
+    COUNT(state, payload = 1) {
+      state.count += payload;
     }
   },
+  // 相当于 Vuex 中的计算属性
   getters: {
-    count: state => state.count,
     hello: state => state.test.hello
   },
   actions: {
     count({ commit }, payload) {
-      commit('COUNT');
+      commit('COUNT', payload);
     }
   },
   modules: {
@@ -26,8 +26,7 @@ export default new Vuex.Store({
       namespaced: true,
       state: {
         hello: 'world'
-      },
-
+      }
     }
   }
 });

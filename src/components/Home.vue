@@ -1,56 +1,78 @@
 <template>
-  <div>
-    <!--  <div class="home">
-      <div class="bar">
-        <div class="baz">
-          <a href="#">1233</a>
-        </div>
-      </div>
-    </div>
-    <div class="test">test</div>-->
+  <div class="home">
+    <!-- 条件语句 -->
+    <p v-if="showName">v-if两秒后出现的：{{name}}</p>
+    <p>this.$set动态添加的数据：{{foo.abc}}</p>
+    <input type="text" v-model="text" />
+    <p>v-model双向绑定：{{text}}</p>
+    <p>
+      事件绑定@:
+      <el-button type="primary" @click="modify">修改</el-button>
+    </p>
+    <br />
+    <!-- 循环语句 -->
+    <!-- <ul>
+      <li v-for="(good, i) in goods" :key="good.text">
+        {{good.text}}-￥{{good.price}}
+        <button @click="addGoods(i)">加入</button>
+      </li>
+    </ul>-->
+    <h3>Vuex</h3>
+    <p>{{count}}</p>
+    <p>这是全局statek中的hello的值：{{hello}}</p>
+    <el-button type="primary" @click="actionCount">修改State</el-button>
+    <el-button type="primary" @click="commitCount">commitState</el-button>
+    <el-button type="primary" @click="ampActionCount">ampActionState</el-button>
   </div>
 </template>
 
 <script>
-let o = { c: 3 };
-let o1 = { a: 1, b: 2 };
-/* 
-
-console.log(Object.length); 
-console.log(Object.prototype);
-console.log(Object.assign(o, o1)); */
-let a = { a: "aa" };
-let b = Object.create(a, {
-  p: {
-    value: 42,
-    writable: true,
-    enumerable: true,
-    configurable: true
-  }
-});
-console.log(b);
-console.log(b.a);
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 
 export default {
-  name: "home"
+  name: 'home',
+  data() {
+    return {
+      name: 'vue测试主页',
+      showName: false,
+      foo: {},
+      text: ''
+    };
+  },
+  computed: {
+    // ...mapGetters(['count', 'hello']),
+    // count: state => state.count,
+    ...mapState(['count']),
+    ...mapGetters(['hello'])
+  },
+  created() {
+    setTimeout(() => {
+      this.showName = true;
+    }, 2000);
+
+    setTimeout(() => {
+      // vue在实例时是数据劫持，动态添加的数据要使用 $set
+      this.$set(this.foo, 'abc', 'aa');
+    }, 2000);
+  },
+  methods: {
+    ...mapActions({ adda: 'count' }),
+    ...mapMutations(['COUNT']),
+    modify() {
+      this.text = '修改双向绑定测试';
+    },
+    actionCount() {
+      this.$store.dispatch('count', 2);
+    },
+    commitCount() {
+      this.$store.commit('COUNT');
+      this.COUNT(10);
+    },
+    ampActionCount() {
+      this.adda(5);
+    }
+  }
 };
 </script>
 
-<style lang="stylus" scoped>
-h = 100px
-w = 200px
-b = 1px solid red
-bb()
-  width 100px
-  height 100px
-  border 1px solid yellow
-  border-radius 10px
-border-radius()
-  border-radius arguments
-.home, .test
-  bb()
-.home .bar .baz > a
-  height 10px
-  width 10px
-  border 1px solid red
-</style>
+<style lang="stylus" scoped></style>
