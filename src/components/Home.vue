@@ -10,16 +10,10 @@
       <el-button type="primary" @click="modify">修改</el-button>
     </p>
     <br />
-    <!-- 循环语句 -->
-    <!-- <ul>
-      <li v-for="(good, i) in goods" :key="good.text">
-        {{good.text}}-￥{{good.price}}
-        <button @click="addGoods(i)">加入</button>
-      </li>
-    </ul>-->
+
     <h3>Vuex</h3>
     <p>{{count}}</p>
-    <p>这是全局statek中的hello的值：{{hello}}</p>
+    <p>这是全局state中的hello的值：{{hello}}</p>
     <el-button type="primary" @click="actionCount">修改State</el-button>
     <el-button type="primary" @click="commitCount">commitState</el-button>
     <el-button type="primary" @click="ampActionCount">ampActionState</el-button>

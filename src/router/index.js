@@ -17,7 +17,7 @@ const router = new VueRouter({
       name: 'form',
       component: () => import('@/components/form/Index')
     },
-    { path: '/cart', name: 'cart', component: () => import('@/components/Cart') },
+    { path: '/cart', name: 'cart', component: () => import('@/components/cart/Index') }
   ]
 });
 
@@ -26,7 +26,6 @@ router.beforeEach((to, from, next) => {
   console.log(to), next();
 });
 
-router.afterEach((to, from) => {
-});
+router.afterEach((to, from) => {});
 
 export default router;

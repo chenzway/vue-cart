@@ -15,36 +15,21 @@
     <div class="line"></div>
     <router-view></router-view>
   </div>
-  <!-- <cart :name="name"></cart> -->
+
 </template>
 
 <script>
-import axios from 'axios';
-import Cart from './components/Cart.vue';
+
 
 export default {
   name: 'app',
-  components: {
-    Cart
-  },
+
   data() {
     return {
-      goods: [],
       activeIndex: '1'
     };
   },
-  async created() {
-    /* axios.get('/api/good').then(res => {
-      console.log(res);
-    }) */
-    try {
-      let res = await axios.get('/api/goods');
-      this.goods = res.data.list;
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-  },
+ 
   methods: {
     addGoods(i) {
       const good = this.goods[i];
