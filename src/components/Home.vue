@@ -17,11 +17,17 @@
     <el-button type="primary" @click="actionCount">修改State</el-button>
     <el-button type="primary" @click="commitCount">commitState</el-button>
     <el-button type="primary" @click="ampActionCount">ampActionState</el-button>
+    <br/>
+    <br/>
+    <test @fromTestEmit="handleChild"></test>
+    <child></child>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
+import Test from './Test'
+import Child from './Child'
 
 export default {
   name: 'home',
@@ -33,10 +39,16 @@ export default {
       text: ''
     };
   },
+  components: {
+    Test,
+    Child
+  },
   computed: {
     // ...mapGetters(['count', 'hello']),
     // count: state => state.count,
     ...mapState(['count']),
+    // 引用 modules 中的 state 只能这样，不如使用 getters方便管理　？
+    // ...mapState({hello: state =>state.test.hello}),
     ...mapGetters(['hello'])
   },
   created() {
@@ -48,6 +60,14 @@ export default {
       // vue在实例时是数据劫持，动态添加的数据要使用 $set
       this.$set(this.foo, 'abc', 'aa');
     }, 2000);
+
+    this.$on('fromTest', val => {
+      console.log(val)
+    });
+    this.$root.$on('rootEmit', val => {
+      console.log(val)
+    });
+
   },
   methods: {
     ...mapActions({ adda: 'count' }),
@@ -64,8 +84,11 @@ export default {
     },
     ampActionCount() {
       this.adda(5);
+    },
+    handleChild(val) {
+      console.log(val)
     }
-  }
+  },
 };
 </script>
 
