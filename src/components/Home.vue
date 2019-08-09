@@ -17,17 +17,18 @@
     <el-button type="primary" @click="actionCount">修改State</el-button>
     <el-button type="primary" @click="commitCount">commitState</el-button>
     <el-button type="primary" @click="ampActionCount">ampActionState</el-button>
-    <br/>
-    <br/>
-    <test @fromTestEmit="handleChild"></test>
-    <child></child>
+    <br />
+    <br />
+    <emit @fromTestEmit="handleChild"></emit>
+    <child ref="child"></child>
+    <el-button type="primary" @click="changeChild">调用子组件的方法</el-button>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
-import Test from './Test'
-import Child from './Child'
+import Emit from './Emit';
+import Child from './Child';
 
 export default {
   name: 'home',
@@ -40,7 +41,7 @@ export default {
     };
   },
   components: {
-    Test,
+    Emit,
     Child
   },
   computed: {
@@ -62,12 +63,11 @@ export default {
     }, 2000);
 
     this.$on('fromTest', val => {
-      console.log(val)
+      console.log(val);
     });
     this.$root.$on('rootEmit', val => {
-      console.log(val)
+      console.log(val);
     });
-
   },
   methods: {
     ...mapActions({ adda: 'count' }),
@@ -86,10 +86,21 @@ export default {
       this.adda(5);
     },
     handleChild(val) {
-      console.log(val)
+      console.log(val);
+    },
+    changeChild() {
+      this.$refs.child.child = 'ffff';
     }
-  },
+  }
 };
+
+f();
+var scope = 'local scope';
+function f() {
+  console.log(scope);
+}
+console.log(f.prototype)
+console.log(f.__proto__)
 </script>
 
 <style lang="stylus" scoped></style>

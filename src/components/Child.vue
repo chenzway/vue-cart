@@ -1,6 +1,6 @@
 <template>
   <div class="Child">
-  child
+  child:{{child}}
   </div>
 </template>
 
@@ -9,6 +9,7 @@ export default {
   name: 'child',
   data() {
     return {
+      child:'abcd'
     };
   },
   created () {

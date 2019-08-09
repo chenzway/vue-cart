@@ -17,7 +17,8 @@ const router = new VueRouter({
       name: 'form',
       component: () => import('@/components/form/Index')
     },
-    { path: '/cart', name: 'cart', component: () => import('@/components/cart/Index') }
+    { path: '/cart', name: 'cart', component: () => import('@/components/cart/Index') },
+    { path: '/test', test: 'cart', component: () => import('@/components/Test') }
   ]
 });
 

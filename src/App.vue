@@ -10,6 +10,9 @@
       <el-menu-item index="3">
         <router-link to="/form" tag="li">自定义表单</router-link>
       </el-menu-item>
+      <el-menu-item index="4">
+        <router-link to="/test" tag="li">测试</router-link>
+      </el-menu-item>
     </el-menu>
     
     <div class="line"></div>
