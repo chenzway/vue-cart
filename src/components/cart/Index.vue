@@ -36,6 +36,13 @@ export default {
       console.log(err);
       throw err;
     }
+    try {
+      let res = await axios.get('/cors/machine_list');
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
   },
   methods: {
     addGoods(i) {

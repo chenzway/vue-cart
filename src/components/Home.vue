@@ -3,8 +3,9 @@
     <!-- 条件语句 -->
     <p v-if="showName">v-if两秒后出现的：{{name}}</p>
     <p>this.$set动态添加的数据：{{foo.abc}}</p>
-    <input type="text" v-model="text" />
+    <input type="text" v-model.number="text" />
     <p>v-model双向绑定：{{text}}</p>
+    <p>v-model TypeVmodel：{{TypeVmodel}}</p>
     <p>
       事件绑定@:
       <el-button type="primary" @click="modify">修改</el-button>
@@ -37,7 +38,8 @@ export default {
       name: 'vue测试主页',
       showName: false,
       foo: {},
-      text: ''
+      text: '',
+      TypeVmodel: '',
     };
   },
   components: {
@@ -50,7 +52,15 @@ export default {
     ...mapState(['count']),
     // 引用 modules 中的 state 只能这样，不如使用 getters方便管理　？
     // ...mapState({hello: state =>state.test.hello}),
-    ...mapGetters(['hello'])
+    ...mapGetters(['hello']),
+
+  },
+  watch:{
+    text: {
+      handler(val,oldVal) {
+        this.TypeVmodel  = typeof this.text;
+      }
+    }
   },
   created() {
     setTimeout(() => {
@@ -99,8 +109,8 @@ var scope = 'local scope';
 function f() {
   console.log(scope);
 }
-console.log(f.prototype)
-console.log(f.__proto__)
+console.log(f.prototype);
+console.log(f.__proto__);
 </script>
 
 <style lang="stylus" scoped></style>
